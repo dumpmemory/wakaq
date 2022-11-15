@@ -57,7 +57,7 @@ def object_hook(obj):
     if cls == "Decimal":
         return Decimal(obj["value"])
     if cls == "datetime":
-        return datetime.strptime(obj["value"], "%Y-%m-%dT%H:%M:%SZ")
+        return datetime.strptime(obj["value"], "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=timezone.utc)
     if cls == "date":
         return datetime.strptime(obj["value"], "%Y-%m-%d").date()
     if cls == "timedelta":
